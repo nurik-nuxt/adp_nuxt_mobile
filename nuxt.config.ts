@@ -12,6 +12,7 @@ export default defineNuxtConfig({
         public: {
             apiBaseUrl: process.env.GATEWAY_BASE_URL,
             authBaseUrl: process.env.AUTH_BASE_URL,
+            codeSms: process.env.SMS_CODE_TOKEN
         }
     }
 })

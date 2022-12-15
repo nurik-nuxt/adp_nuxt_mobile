@@ -4,8 +4,8 @@
     <input
         :type="type"
         :id="type"
-        class="bg-gray-150 w-full px-2.5 py-3 rounded-md outline-0"
-        :class="isError ? 'border border-rose-50' : 'border-none'"
+        class="bg-gray-150 w-full px-2.5 py-3 rounded-md outline-0 h-11"
+        :class="isError ? 'border border-rose-50 placeholder-rose-50 ' : 'border-none'"
         :placeholder="placeholder"
         :value="inputValue"
         @input="$emit('update:inputValue', $event.target.value)"

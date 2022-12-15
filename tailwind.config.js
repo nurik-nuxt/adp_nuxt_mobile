@@ -25,7 +25,11 @@ module.exports = {
         },
         blue: {
           50: '#376FFF'
-        }
+        },
+        green: {
+          50: '#AEDEA2',
+          100: '#33A343'
+        },
       }
     },
     fontFamily: {

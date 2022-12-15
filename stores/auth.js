@@ -83,6 +83,28 @@ export const useAuthStore = defineStore('auth', {
 
             this.accessToken = ''
         },
+
+        async sendVerifyCode({ mobile_phone }) {
+            const { authBaseUrl, codeSms } = useRuntimeConfig().public
+            let body = {
+                t: codeSms,
+                mobile_phone: mobile_phone
+            }
+            console.log(body)
+            try {
+                let resp = await $fetch(`${authBaseUrl}/notification/verify/send-sms-code`, {
+                    method: 'POST',
+                    body,
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                })
+                console.log(resp)
+            } catch (e) {
+                throw e
+            }
+        }
     },
 
     getters: {
