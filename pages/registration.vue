@@ -1,42 +1,55 @@
 <template>
-  <form>
+
+  <!--Sms Code Verification Form-->
+  <form @submit.prevent="verifySmsCode">
     <BaseTextField
         :label="'ИИН'"
         :placeholder="'123456789012'"
-        v-model:input-value="form.iin"
+        v-model:inputValue="form.iin"
+        :is-error="v$.iin.$error"
+        :type="'iin'"
     />
     <div class="flex justify-between items-center">
       <BaseTextField
           :label="'Телефон'"
           :placeholder="'+7 776 169 41 43'"
           class="flex-1"
-          v-model:input-value="form.mobile_phone"
+          v-model:inputValue="form.mobile_phone"
+          :is-error="v$.mobile_phone.$error"
+          :type="'phone'"
       />
       <BaseButton
           class="flex-1 ml-2.5"
           variant="light"
-          @clicked="verifySmsCode"
       />
     </div>
+  </form>
+
+  <!--Password Verification Form-->
+  <form @submit.prevent="makeRegistration">
     <BaseTextField
         :label="'Введите код из SMS'"
         :placeholder="'код SMS'"
-        v-model:input-value="form.code"
+        v-model:inputValue="form.code"
+        :is-error="t$.code.$error"
+        :type="'code'"
     />
     <BaseTextField
         :label="'Придумайте пароль'"
         :placeholder="'Пароль'"
-        v-model:input-value="form.password"
+        v-model:inputValue="form.password"
         :type="'password'"
+        :is-error="t$.password.$error"
     />
     <BaseTextField
         :label="'Повторите пароль еще раз'"
         :placeholder="'Пароль'"
-        v-model:input-value="form.password_confirmation"
+        v-model:inputValue="form.password_confirmation"
         :type="'password'"
+        :is-error="t$.password_confirmation.$error"
     />
+    <BaseButton variant="green">Зарегистрироваться</BaseButton>
   </form>
-  <BaseButton variant="green">Зарегистрироваться</BaseButton>
 </template>
 
 <script setup>
@@ -48,6 +61,7 @@ definePageMeta({
   layout: 'blank'
 })
 let { sendVerifyCode } = useAuthStore()
+let { registration } = useAuthStore()
 
 let form = reactive({
   iin: '',
@@ -68,14 +82,28 @@ const v$ = useValidate(smsCodeRules, form)
 const verifySmsCode = async () => {
   const isSmsCodeFormCorrect = await v$.value.$validate()
   if (isSmsCodeFormCorrect) {
-    console.log("Valid")
-  } else {
-    console.log("Invalid")
+    let resp = await sendVerifyCode({mobile_phone: form.mobile_phone})
+    console.log(resp)
   }
-  // await sendVerifyCode({
-  //   mobile_phone: form.mobile_phone
-  // })
 }
 
+const passwordSendRules = computed(() => {
+  return {
+    code: { required },
+    password: { required },
+    password_confirmation: { required }
+  }
+})
+
+const t$ = useValidate(passwordSendRules, form)
+
+const makeRegistration = async () => {
+  const isPasswordCorrectFormat = await t$.value.$validate()
+  if(isPasswordCorrectFormat) {
+    console.log("Make registration")
+    let reg = await registration({ body: form })
+    console.log(reg)
+  }
+}
 
 </script>

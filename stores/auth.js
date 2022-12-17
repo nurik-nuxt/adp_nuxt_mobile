@@ -90,7 +90,6 @@ export const useAuthStore = defineStore('auth', {
                 t: codeSms,
                 mobile_phone: mobile_phone
             }
-            console.log(body)
             try {
                 let resp = await $fetch(`${authBaseUrl}/notification/verify/send-sms-code`, {
                     method: 'POST',
@@ -103,6 +102,22 @@ export const useAuthStore = defineStore('auth', {
                 console.log(resp)
             } catch (e) {
                 throw e
+            }
+        },
+        async registration({ body }) {
+            const { authBaseUrl } = useRuntimeConfig().public
+            try {
+                let resp = await $fetch(`${authBaseUrl}/temp-users/register`, {
+                    method: 'POST',
+                    body,
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                    }
+                })
+                console.log(resp)
+            } catch (e) {
+                console.log(e)
             }
         }
     },
