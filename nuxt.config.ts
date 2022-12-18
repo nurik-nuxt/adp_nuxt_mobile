@@ -14,5 +14,19 @@ export default defineNuxtConfig({
             authBaseUrl: process.env.AUTH_BASE_URL,
             codeSms: process.env.SMS_CODE_TOKEN
         }
+    },
+    vue: {
+        compilerOptions: {
+            isCustomElement: (tag) => ['trix-editor'].indexOf(tag) !== -1
+        }
+    },
+    vite: {
+        optimizeDeps: {
+            include: [
+                'nouislider',
+                'wnumb',
+                'trix'
+            ]
+        }
     }
 })
