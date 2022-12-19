@@ -1,4 +1,5 @@
-/** @type {import('tailwindcss').Config} */
+/** @type {DefaultColors} */
+const colors = require("tailwindcss/colors")
 module.exports = {
   content: [
     "./components/**/*.{js,vue,ts}",
@@ -10,6 +11,9 @@ module.exports = {
     './vueform.config.js', // or where `vueform.config.js` is located
     './node_modules/@vueform/vueform/themes/tailwind/**/*.vue',
     './node_modules/@vueform/vueform/themes/tailwind/**/*.js',
+    "./index.html",
+    "./src/**/*.{vue,js,ts,jsx,tsx}",
+    "./node_modules/vue-tailwind-datepicker/**/*.js"
   ],
   theme: {
     screens: {
@@ -33,6 +37,14 @@ module.exports = {
           50: '#AEDEA2',
           100: '#33A343'
         },
+        "vtd-primary": colors.sky, // Light mode Datepicker color
+        "vtd-primary-500": '#39B54A',
+        "vtd-primary-400": '#39B54A',
+        "vtd-primary-100": '#C1E6B8',
+        "vtd-primary-600": '#39B54A',
+        "vtd-primary-700": '#39B54A',
+        "vtd-secondary-300": 'none',
+        "vtd-secondary": '#FFFFF', // Dark mode Datepicker color
       }
     },
     fontFamily: {
@@ -40,6 +52,7 @@ module.exports = {
     }
   },
   plugins: [
-    require('@vueform/vueform/tailwind')
+    require('@vueform/vueform/tailwind'),
+    require('@tailwindcss/forms'),
   ],
 }
