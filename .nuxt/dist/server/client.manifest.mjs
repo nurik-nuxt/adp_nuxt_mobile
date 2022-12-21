@@ -1,1 +1,0 @@
-export { default } from "file:///home/ubnt02/Desktop/PhpStormProjects/adp_nuxt_mobile/node_modules/@nuxt/vite-builder/dist/runtime/client.manifest.mjs"
