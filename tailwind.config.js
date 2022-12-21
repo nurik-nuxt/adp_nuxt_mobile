@@ -35,7 +35,8 @@ module.exports = {
         },
         green: {
           50: '#AEDEA2',
-          100: '#33A343'
+          100: '#33A343',
+          150: '#C1E6B8'
         },
         "vtd-primary": colors.sky, // Light mode Datepicker color
         "vtd-primary-500": '#39B54A',

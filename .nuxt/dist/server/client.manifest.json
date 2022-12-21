@@ -6,10 +6,10 @@
     "module": true,
     "resourceType": "script"
   },
-  "/Users/nursultannurtuganuly/Desktop/PhpStormProjects/adp_nuxt_mobile/node_modules/nuxt/dist/app/entry.mjs": {
+  "/home/ubnt02/Desktop/PhpStormProjects/adp_nuxt_mobile/node_modules/nuxt/dist/app/entry.mjs": {
     "resourceType": "script",
     "module": true,
     "isEntry": true,
-    "file": "/Users/nursultannurtuganuly/Desktop/PhpStormProjects/adp_nuxt_mobile/node_modules/nuxt/dist/app/entry.mjs"
+    "file": "/home/ubnt02/Desktop/PhpStormProjects/adp_nuxt_mobile/node_modules/nuxt/dist/app/entry.mjs"
   }
 }

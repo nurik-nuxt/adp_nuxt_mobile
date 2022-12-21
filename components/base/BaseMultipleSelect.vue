@@ -1,6 +1,5 @@
 <template>
   <div>
-    {{ value }}
     <Multiselect
         v-model="value"
         :options="options"

@@ -1,5 +1,4 @@
 <template>
-  {{ dateValue }}
   <vue-tailwind-datepicker use-range :auto-apply="false" :formatter="formatter" :i18n="'ru'" :shortcuts="false" :options="options" v-model="dateValue" />
 </template>
 
